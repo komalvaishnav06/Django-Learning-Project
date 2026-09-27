@@ -1,18 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django-Tutorial</title>
-</head>
-<body>
-    <h1>This file is return by django server</h1>
-    <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam aliquam aliquid perspiciatis cupiditate ratione? Natus doloremque iure, doloribus nisi necessitatibus adipisci asperiores voluptatibus eum, veritatis molestias in est amet distinctio.</h2>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis eveniet, veritatis nostrum quae placeat, voluptate quod optio in saepe consequuntur minima accusamus debitis amet excepturi. Eum dolores distinctio dolorem harum.</p>
-    <script>
-        console.log("hey django")
-    </script>
+{% extends "base.html" %}
+{% block start %}
+<h1>This is index page</h1>
+    <a href="/contact/">
+        contact
+    </a>
+    |
+    <a href="/about/">
+        about
+    </a>
+    <!-- {{peoples}} -->
 
+    <table class="container">
+        <tr>
+            <th>S_no.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can vote</th>
+        </tr>
+        
+        {% for people in peoples %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.age}}</td>
+            <td {% if people.age >= 18 %} style="background: red" {% endif %}>
+                {% if people.age >= 18 %}
+                👍
+                {% else %}
+                👎
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
-</body>
-</html>
+   <p>
+    {{text|truncatechars:30}}
+   </p>
+
+   <p>
+    {% if "cucumber" in vegetables%}
+    yes availabe :)
+    {% elif "tomato" in vegetables%}
+    Yes Available :)
+    {% else %}
+    Not Available :(
+    {%endif%}
+   </p>
+{% endblock %}
