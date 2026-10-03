@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import *
-
+from django.http import HttpResponse
 # Create your views here.
 def receipes(request):
     if request.method == "POST":
@@ -21,4 +21,14 @@ def receipes(request):
      print(receipe_image)
 
      return redirect('/receipes/')
-    return render(request, 'reciepes.html')
+
+    queryset = Receipe.objects.all()
+    context = {'receipes':queryset}
+    return render(request, 'reciepes.html',context)
+
+def delete_receipe(request,id):
+   queryset = Receipe.objects.get(id = id)
+   queryset.delete()
+   # print(id)
+   return redirect('/receipes/')
+   # return HttpResponse("a")
