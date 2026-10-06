@@ -18,13 +18,26 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Receipe Image</label>
-            <input name="receipe_image" type="file" class="form-control">
+            <input name="receipe_image" type="file"  class="form-control">
         </div>
 
         <button type="submit" class="btn btn-success">Add Receipe</button>
     </form>
+    <hr> 
+    <div class="mt-5">
+      <div class="mx-auto col-6">
+        <form method="get">
 
-    <table class="table">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Search Food</label>
+            <input name="search" type="text" class="form-control">
+            
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+    </div>
+    <table class="table mt-5">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -41,10 +54,11 @@
       <td>{{receipe.receipe_name}}</td>
       <td>{{receipe.receipe_description}}</td>
       <td>
-        <img src="/media/{{ recipe.receipe_image}}" style="width: 150px;">
+        <img src="/media/{{ receipe.receipe_image}}" style="width: 150px;">
       </td>
       <td>
-        <a href="/delete-receipe/{{receipe.id}}/" class="btn btn-danger">Delete</a>
+        <a href="/delete-receipe/{{receipe.id}}/" class="btn btn-danger m-2">Delete</a>
+        <a href="/update-receipe/{{receipe.id}}/" class="btn btn-success">Update</a>
       </td>
     </tr>
    {% endfor %}
